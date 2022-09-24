@@ -1,5 +1,5 @@
 # airflow_installation_instructions repo
-This repo contains a readme.md file explaining how to install Airflow locally using Docker
+This repo contains a readme.md file explaining how to install Airflow locally using Docker. This is the fastest way to install Airflow on your computer. In this guide, I assume you already have Python installed on your computer. If you don't have Python installed, please install it from [python.org](https://www.python.org/)
 
 # Steps to install Airflow locally, assuming you want to download version 2.3.4
 1. Create a virtual environment → `python -m venv venv`
