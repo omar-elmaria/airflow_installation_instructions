@@ -75,3 +75,38 @@ This repo contains a readme.md file explaining how to install Airflow locally us
 # Manipulating the PYTHONPATH on Windows
 To add a path to the PYTHONPATH on the Windows operating system, use the environment variables window from the start menu
 ![image](https://user-images.githubusercontent.com/98691360/192016815-c1bd873c-eded-4586-9368-2a1d6c8f5ab7.png)
+
+# Adding the GOOGLE_APPLICATION_CREDENTIALS to query data from BigQuery tables
+By running this command, you will install the necessary libraries to query data from BigQuery tables. However, you will still need to configure the credentials so that
+your requests don't get blocked
+```
+pip3 install "apache-airflow[celery]==2.3.4" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.3.4/constraints-3.7.txt"
+```
+## Steps to set credentials:
+1. Donwload [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+2. Open the Google Cloud SDK terminal after the installation finishes and type in the following commands one by one
+    - ```gcloud auth application-default login --disable-quota-project```
+    - ```gcloud config set project {insert_project_name_without_curly_braces}```
+    - ```gcloud auth login --enable-gdrive-access --no-add-quota-project-to-adc```
+3. Run docker-compose.yaml to activate the Airflow environment, go to **localhost:8080** after all services are spun up, click on "Admin --> Connections" to create
+a connection and fill the fields as shown in the screenshot below
+![image](https://user-images.githubusercontent.com/98691360/192107447-deab4d6b-277b-4e56-bac4-dc36cc0ae2cd.png)
+    - The scopes that you need to enter in the **Scopes (comma separated)** field are shown below. Make sure to separate them by commas
+        - https://www.googleapis.com/auth/drive
+        - https://www.googleapis.com/auth/bigquery
+        - https://www.googleapis.com/auth/cloud-platform
+4. Go to the folder where your **application_default_credentials** are stored
+    - On Windows, it's usually stored in this directory
+        - ```C:\Users\%USER%\AppData\Roaming\gcloud\application_default_credentials.json``
+    - On Mac/Linux, it's usually stored in this directory
+        - ```$HOME/.config/gcloud/application_default_credentials.json```
+5. Copy-paste the JSON file to one of the folders that get cloned to the Airflow environment. In this example, I use the folder **py_scripts**, which I created a 
+volume for in **step #11** under the ```Steps to install Airflow locally``` section. You can also put in any of the other three volumes that are created by Airflow by default. In the end, it should look something like this
+![image](https://user-images.githubusercontent.com/98691360/192107775-34326b03-e962-4c1f-a429-7829384fbf7b.png)
+    - **Important:** Remember to create a volume in the docker-compose.yaml that maps the folder where the JSON file is stored to the local environment in Airflow
+6. At the beginning of the DAG script that is stored in the DAGs folder, add the following commands
+```
+import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/opt/airflow/{volume_where_the_JSON_file_is_stored}/application_default_credentials.json"
+```
+7. Now, you should be able to query data in BigQuery through Airflow
