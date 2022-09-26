@@ -74,8 +74,7 @@ This repo contains a readme.md file explaining how to install Airflow locally us
 
 # Manipulating the PYTHONPATH on Windows
 To add a path to the PYTHONPATH on the Windows operating system, use the environment variables window from the start menu
-![image](https://user-images.githubusercontent.com/98691360/192016815-c1bd873c-eded-4586-9368-2a1d6c8f5ab7.png)
-
+![image](https://user-images.githubusercontent.com/98691360/192232307-bde284dc-c9fb-4087-871e-c505f363913d.png)
 
 # Adding the GOOGLE_APPLICATION_CREDENTIALS to query data from BigQuery tables
 By running this command, you will install the necessary libraries to query data from BigQuery tables. However, you will still need to configure the credentials so that
