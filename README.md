@@ -106,7 +106,8 @@ a connection and fill the fields as shown in the screenshot below
 
 5. Copy-paste the JSON file to one of the folders that get cloned to the Airflow environment. In this example, I use the folder **py_scripts**, which I created a 
 volume for in **step #11** under the ```Steps to install Airflow locally``` section. You can also put in any of the other three volumes that are created by Airflow by default. In the end, it should look something like this
-![image](https://user-images.githubusercontent.com/98691360/192107775-34326b03-e962-4c1f-a429-7829384fbf7b.png)
+
+![image](https://user-images.githubusercontent.com/98691360/192233014-821f4c0f-968a-4b54-8391-a7420ee1d465.png)
     - **Important:** Remember to create a volume in the docker-compose.yaml that maps the folder where the JSON file is stored to the local environment in Airflow
 
 6. At the beginning of the DAG script that is stored in the DAGs folder, add the following commands
