@@ -76,6 +76,8 @@ This repo contains a readme.md file explaining how to install Airflow locally us
 To add a path to the PYTHONPATH on the Windows operating system, use the environment variables window from the start menu
 ![image](https://user-images.githubusercontent.com/98691360/192232307-bde284dc-c9fb-4087-871e-c505f363913d.png)
 
+The new value that will be added under the ```Path``` variable is --> **%PYTHONPATH%**
+
 _N.B. You will need to restart your computer for this change to come into effect_
 
 # 3. Adding the GOOGLE_APPLICATION_CREDENTIALS to query data from BigQuery tables
