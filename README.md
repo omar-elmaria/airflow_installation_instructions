@@ -1,7 +1,7 @@
 # airflow_installation_instructions repo
 This repo contains a readme.md file explaining how to install Airflow locally using Docker. This is the fastest way to install Airflow on your computer. In this guide, I assume you already have Python installed on your computer. If you don't have Python installed, please install it from [python.org](https://www.python.org/)
 
-# Steps to install Airflow locally, assuming you want to download version 2.3.4
+# 1. Steps to install Airflow locally, assuming you want to download version 2.3.4
 1. Create a virtual environment → `python -m venv venv`
 
 2. Make sure the python used is the one in the virtual env by running the command `which python`
@@ -72,17 +72,19 @@ This repo contains a readme.md file explaining how to install Airflow locally us
 14. Now, go to your browser, type in **localhost:8080**. The username and password are both “`airflow`” without the double quotes. Congratulations, you are now running Airflow locally from your computer. It should look something like this  
 ![image](https://user-images.githubusercontent.com/98691360/192023824-8ae94ee0-7c1b-4a7d-917f-02b7c8ceb8a0.png)
 
-# Manipulating the PYTHONPATH on Windows
+# 2. Manipulating the PYTHONPATH on Windows
 To add a path to the PYTHONPATH on the Windows operating system, use the environment variables window from the start menu
 ![image](https://user-images.githubusercontent.com/98691360/192232307-bde284dc-c9fb-4087-871e-c505f363913d.png)
 
-# Adding the GOOGLE_APPLICATION_CREDENTIALS to query data from BigQuery tables
+_N.B. You will need to restart your computer for this change to come into effect_
+
+# 3. Adding the GOOGLE_APPLICATION_CREDENTIALS to query data from BigQuery tables
 By running this command, you will install the necessary libraries to query data from BigQuery tables. However, you will still need to configure the credentials so that
 your requests don't get blocked
 ```
 pip3 install "apache-airflow[celery]==2.3.4" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.3.4/constraints-3.7.txt"
 ```
-## Steps to set credentials:
+## 3.1 Steps to set credentials:
 1. Donwload [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
 
 2. Open the Google Cloud SDK terminal after the installation finishes and type in the following commands one by one
